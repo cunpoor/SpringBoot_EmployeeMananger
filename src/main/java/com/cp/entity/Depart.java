@@ -20,6 +20,7 @@ public class Depart {
     private Long id;
     @Column(name = "name", length = 50, nullable = false)
     private String name;
+    
     @OneToMany(mappedBy = "departs", cascade = CascadeType.ALL)
     private Set<Staff> staffs;
 
