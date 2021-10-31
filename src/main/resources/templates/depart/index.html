@@ -1,0 +1,31 @@
+<!-- Header -->
+<div th:replace="./include/header.html"></div>
+<!-- End header -->
+
+<div class="container m-5">
+    <h1 class="text-center mb-4 text-uppercase">Quản lý phòng ban</h1>
+    <a th:href="@{/depart/add}" class="btn btn-primary mb-4">Thêm phòng ban</a>
+    <table class="table table-bordered align-middle">
+        <thead>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Tên văn phòng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" d : ${DEPART_LIST}">
+                <td th:text="${dStat.index + 1}"></td>
+                <td th:text="${d.name}"></td>
+                <td>
+                    <a th:href="@{/depart/update?id={id}(id=${d.id})}" class="btn btn-success">Cập nhật</a>
+                    <a th:href="@{/depart/delete?id={id}(id=${d.id})}" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer -->
+<div th:replace="./include/footer.html"></div>
+<!-- End Footer -->

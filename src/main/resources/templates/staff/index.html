@@ -1,0 +1,37 @@
+<!-- Header -->
+<div th:replace="./include/header.html"></div>
+<!-- End header -->
+
+<div class="container m-5">
+    <h1 class="text-center mb-4 text-uppercase">Quản lý nhân viên</h1>
+    <a th:href="@{/staff/add}" class="btn btn-primary mb-4">Thêm nhân viên</a>
+    <table class="table table-bordered align-middle">
+        <thead>
+            <tr class="text-center">
+                <th>STT</th>
+                <th>Tên nhân viên</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>Số điện thoại</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" s : ${STAFF_LIST}">
+                <td th:text="${sStat.index + 1}"></td>
+                <td th:text="${s.name}"></td>
+                <td th:text="${s.gender?'Nam':'Nữ'}"></td>
+                <td th:text="${#dates.format(s.birthday,'dd/MM/yyyy')}"></td>
+                <td th:text="${s.phone}"></td>
+                <td>
+                    <a th:href="@{/staff/update?id={id}(id=${s.id})}" class="btn btn-success">Cập nhật</a>
+                    <a th:href="@{/staff/delete?id={id}(id=${s.id})}" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer -->
+<div th:replace="./include/footer.html"></div>
+<!-- End Footer -->

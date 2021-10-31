@@ -1,0 +1,18 @@
+<!-- Header -->
+<div th:replace="./include/header.html"></div>
+<!-- End header -->
+
+<div class="container m-5">
+    <h1 class="text-center mb-4 text-uppercase">Thêm phòng ban</h1>
+    <form action="#" th:object="${DEPART}" th:action="@{/depart/save}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên phòng ban<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+        </div>
+        <button type="submit " class="btn btn-primary ">Submit</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="./include/footer.html "></div>
+<!-- End Footer -->

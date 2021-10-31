@@ -1,0 +1,64 @@
+<!-- Header -->
+<div th:replace="./include/header.html"></div>
+<!-- End header -->
+
+<div class="container m-5">
+    <h1 class="text-center mb-4 text-uppercase">Thêm nhân viên</h1>
+    <form action="#" th:object="${STAFF}" th:action="@{/staff/save}" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Tên nhân viên<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="phone" class="form-label">Số điện thoại<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="phone" name="phone" th:field="*{phone}">
+            </div>
+            <div class="col">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" id="email" name="email" th:field="*{email}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="depart" class="form-label">Phòng ban<span class="text-danger">*</span></label>
+                <select class="form-select" aria-label="depart" th:field="*{departs}">
+                    <option th:each="d : ${DEPART_LIST}" th:value="${d.id}" th:text="${d.name}"></option>
+                  </select>
+                <!-- <input type="text" class="form-control" id="depart" name="depart" th:field="*{depart}"> -->
+            </div>
+            <div class="col">
+                <label for="salary" class="form-label">Lương<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="email" name="salary" th:field="*{salary}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="birthday" class="form-label">Ngày sinh<span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="birthday" name="birthday" th:field="*{birthday}">
+            </div>
+            <div class="col">
+                <label for="gender" class="form-label">Giới tính<span class="text-danger">*</span></label>
+                <div class="d-flex align-items-end">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="true" th:field="*{gender}">
+                        <label class="form-check-label" for="male">Nam</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="false" th:field="*{gender}">
+                        <label class="form-check-label" for="female">Nữ</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="notes" class="form-label">Ghi chú</label>
+            <textarea class="form-control" id="notes" name="notes" rows="3" th:field="*{notes}"></textarea>
+        </div>
+        <button type="submit " class="btn btn-primary ">Submit</button>
+    </form>
+</div>
+
+<!-- Footer -->
+<div th:replace="./include/footer.html "></div>
+<!-- End Footer -->
