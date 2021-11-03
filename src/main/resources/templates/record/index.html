@@ -1,0 +1,37 @@
+<!-- Header -->
+<div th:replace="./include/header.html"></div>
+<!-- End header -->
+
+<div class="container m-5">
+    <h1 class="text-center mb-4 text-uppercase">Thành tích và kỷ luật</h1>
+    <a th:href="@{/record/add}" class="btn btn-primary mb-4">Thêm thành tích & kỷ luật</a>
+    <table class="table table-bordered align-middle">
+        <thead>
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Nhân viên</th>
+                <th>Loại</th>
+                <th>Lý do</th>
+                <th>Ngày ghi nhận</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" r : ${RECORD_LIST}">
+                <td th:text="${rStat.index + 1}"></td>
+                <td th:text="${r.staffs.name}"></td>
+                <td th:text="${r.type?'Thành tích':'Kỷ luật'}"></td>
+                <td th:text="${r.reason}"></td>
+                <td th:text="${#dates.format(r.date,'dd/MM/yyyy')}"></td>
+                <td>
+                    <a th:href="@{/record/update?id={id}(id=${r.id})}" class="btn btn-success">Cập nhật</a>
+                    <a th:href="@{/record/delete?id={id}(id=${r.id})}" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer -->
+<div th:replace="./include/footer.html"></div>
+<!-- End Footer -->

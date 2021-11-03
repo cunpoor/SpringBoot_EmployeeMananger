@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "Records")
 public class Record {
@@ -21,6 +23,7 @@ public class Record {
     private Boolean type;
     @Column(name = "reason", nullable = false)
     private String reason;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date", nullable = false)
     private Date date;
 
