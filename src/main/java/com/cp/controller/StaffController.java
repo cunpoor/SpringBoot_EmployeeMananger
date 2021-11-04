@@ -28,39 +28,39 @@ public class StaffController {
 
     @GetMapping("")
     public String index(ModelMap model) {
-        model.addAttribute("STAFF_LIST", staffRepository.findAll());
+        model.addAttribute("STAFF_LIST", this.staffRepository.findAll());
         return "staff/index";
     }
 
     @GetMapping("/add")
     public String add(ModelMap model) {
         model.addAttribute("STAFF", new Staff());
-        model.addAttribute("DEPART_LIST", departRepository.findAll());
-        id_staff = null;
+        model.addAttribute("DEPART_LIST", this.departRepository.findAll());
+        this.id_staff = null;
         return "staff/addOrUpdate";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("STAFF") Staff staff) {
-        if(id_staff == null){
+        if(this.id_staff == null){
             this.staffRepository.save(staff);
         }else{
-            Optional<Staff> staff_find = staffRepository.findById(id_staff);
+            Optional<Staff> staff_find = this.staffRepository.findById(id_staff);
             staff.setId(staff_find.get().getId());
             this.staffRepository.save(staff);
-            id_staff = null;
+            this.id_staff = null;
         }
         return "redirect:/staff";
     }
 
     @GetMapping("/update")
     public ModelAndView update(@RequestParam Long id, ModelMap model) {
-        Optional<Staff> staff = staffRepository.findById(id);
+        Optional<Staff> staff = this.staffRepository.findById(id);
         ModelAndView mav = new ModelAndView("staff/addOrUpdate");
         if (staff.isPresent()) {
             mav.addObject("STAFF", staff);
-            model.addAttribute("DEPART_LIST", departRepository.findAll());
-            id_staff = id;
+            model.addAttribute("DEPART_LIST", this.departRepository.findAll());
+            this.id_staff = id;
         } else {
             System.out.println("Khong ton tai: " + id);
             mav.setViewName("redirect:/staff");
@@ -70,9 +70,9 @@ public class StaffController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam Long id) {
-        Optional<Staff> staff = staffRepository.findById(id);
+        Optional<Staff> staff = this.staffRepository.findById(id);
         if (staff.isPresent()) {
-            staffRepository.deleteById(id);
+            this.staffRepository.deleteById(id);
         } else {
             System.out.println("Khong ton tai: " + id);
         }

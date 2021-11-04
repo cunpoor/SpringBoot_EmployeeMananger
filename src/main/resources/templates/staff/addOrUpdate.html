@@ -25,7 +25,6 @@
                 <select class="form-select" aria-label="depart" th:field="*{departs}">
                     <option th:each="d : ${DEPART_LIST}" th:value="${d.id}" th:text="${d.name}"></option>
                   </select>
-                <!-- <input type="text" class="form-control" id="depart" name="depart" th:field="*{depart}"> -->
             </div>
             <div class="col">
                 <label for="salary" class="form-label">Lương<span class="text-danger">*</span></label>
