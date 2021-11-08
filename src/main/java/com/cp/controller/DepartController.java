@@ -26,37 +26,37 @@ public class DepartController {
 
     @GetMapping("")
     public String index(ModelMap model) {
-        model.addAttribute("DEPART_LIST", departRepository.findAll());
+        model.addAttribute("DEPART_LIST", this.departRepository.findAll());
         return "depart/index";
     }
 
     @GetMapping("/add")
     public String add(ModelMap model) {
         model.addAttribute("DEPART", new Depart());
-        id_Depart = null;
+        this.id_Depart = null;
         return "depart/addOrUpdate";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("DEPART") Depart depart) {
-        if(id_Depart == null){
+        if(this.id_Depart == null){
             this.departRepository.save(depart);
         }else{
-            Optional<Depart> dp = departRepository.findById(id_Depart);
+            Optional<Depart> dp = departRepository.findById(this.id_Depart);
             depart.setId(dp.get().getId());
             this.departRepository.save(depart);
-            id_Depart = null;
+            this.id_Depart = null;
         }
         return "redirect:/depart";
     }
 
     @GetMapping("/update")
     public ModelAndView edit(@RequestParam Long id) {
-        Optional<Depart> dp = departRepository.findById(id);
+        Optional<Depart> dp = this.departRepository.findById(id);
         ModelAndView mav = new ModelAndView("depart/addOrUpdate");
         if(dp.isPresent()){
             mav.addObject("DEPART", dp);
-            id_Depart = id;
+            this.id_Depart = id;
         }else{
             System.out.println("Khong ton tai "+id);
             mav.setViewName("redirect:/depart");
@@ -66,7 +66,7 @@ public class DepartController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam Long id) {
-        Optional<Depart> dp = departRepository.findById(id);
+        Optional<Depart> dp = this.departRepository.findById(id);
         if(dp.isPresent()){
             this.departRepository.deleteById(id);
         }else{

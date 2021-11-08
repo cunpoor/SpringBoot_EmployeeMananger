@@ -11,7 +11,6 @@
                 <th>ID</th>
                 <th>Nhân viên</th>
                 <th>Loại</th>
-                <th>Lý do</th>
                 <th>Ngày ghi nhận</th>
                 <th></th>
             </tr>
@@ -21,9 +20,11 @@
                 <td th:text="${rStat.index + 1}"></td>
                 <td th:text="${r.staffs.name}"></td>
                 <td th:text="${r.type?'Thành tích':'Kỷ luật'}"></td>
-                <td th:text="${r.reason}"></td>
                 <td th:text="${#dates.format(r.date,'dd/MM/yyyy')}"></td>
                 <td>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewRecord">
+                        Chi tiết
+                    </button>
                     <a th:href="@{/record/update?id={id}(id=${r.id})}" class="btn btn-success">Cập nhật</a>
                     <a th:href="@{/record/delete?id={id}(id=${r.id})}" class="btn btn-danger">Xóa</a>
                 </td>
@@ -31,6 +32,26 @@
         </tbody>
     </table>
 </div>
+
+<!-- View detail record -->
+<div class="modal fade" id="viewRecord" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewRecordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewRecordLabel">Chi tiết</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End view detail record -->
 
 <!-- Footer -->
 <div th:replace="./include/footer.html"></div>
