@@ -11,25 +11,30 @@ $(document).ready(function() {
             $('#r_type').html(record.type ? 'Thành tích' : 'Kỷ luật');
             $('#r_date').html($.date(record.date));
         });
-
+        console.clear();
         $('#viewRecord').modal();
+
     });
     ///
 
-    /// Show detail staff
-    // $('.table .detail_staff').on('click', function(event) {
-    //     event.preventDefault();
-    //     var href = $(this).attr('href');
+    // Show detail staff
+    $('.table .detail_staff').on('click', function(event) {
+        event.preventDefault();
+        var href = $(this).attr('href');
 
-    //     $.get(href, function(staff, status) {
-    //         $('#s_name').html(staff.name);
-    //         // $('#r_reason').html(record.reason);
-    //         // $('#r_type').html(record.type ? 'Thành tích' : 'Kỷ luật');
-    //         // $('#r_date').html($.date(record.date));
-    //     });
-
-    //     $('#viewRecord').modal();
-    // });
+        $.get(href, function(staff) {
+            $('#s_name').html(staff.name);
+            $('#s_depart').html(staff.departs.name);
+            $('#s_gender').html(staff.gender ? 'Nam' : 'Nữ');
+            $('#s_birthday').html($.date(staff.birthday));
+            $('#s_email').html(staff.email);
+            $('#s_phone').html(staff.phone);
+            $('#s_salary').html(staff.salary);
+            $('#s_notes').html(staff.notes);
+        });
+        console.clear();
+        $('#viewStaff').modal();
+    });
 
     /// Format date
     $.date = function(dateObject) {
@@ -47,4 +52,5 @@ $(document).ready(function() {
 
         return date;
     };
+
 });

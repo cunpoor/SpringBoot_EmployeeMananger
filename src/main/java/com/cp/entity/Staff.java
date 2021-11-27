@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,8 +41,8 @@ public class Staff {
     private String notes;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "depart_id")
+    @JsonIgnoreProperties("staffs")
     private Depart departs;
     //
     @OneToMany(mappedBy = "staffs", cascade = CascadeType.ALL)

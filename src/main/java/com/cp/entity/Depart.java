@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "Departs", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Depart {
@@ -22,6 +24,7 @@ public class Depart {
     private String name;
     
     @OneToMany(mappedBy = "departs", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("departs")
     private Set<Staff> staffs;
 
     public Depart() {

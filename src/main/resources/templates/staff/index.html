@@ -24,15 +24,66 @@
                 <td th:text="${#dates.format(s.birthday,'dd/MM/yyyy')}"></td>
                 <td th:text="${s.phone}"></td>
                 <td>
-                    <a th:href="@{/staff/view?id={id}(id=${s.id})}" class="btn btn-primary">Chi tiết</a>
-                    <a th:href="@{/staff/update?id={id}(id=${s.id})}" class="btn btn-success">Cập nhật</a>
-                    <a th:href="@{/staff/delete?id={id}(id=${s.id})}" class="btn btn-danger">Xóa</a>
-                    <a th:href="@{/record/add/s?id={id}(id=${s.id})}" class="btn btn-primary">+</a>
+                    <a th:href="@{/staff/view?id={id}(id=${s.id})}" class="btn btn-primary detail_staff" data-bs-toggle="modal" data-bs-target="#viewStaff"><i class="far fa-info-circle"></i></a>
+                    <a th:href="@{/staff/update?id={id}(id=${s.id})}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    <a th:href="@{/staff/delete?id={id}(id=${s.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a th:href="@{/record/add/s?id={id}(id=${s.id})}" class="btn btn-primary"><i class="fad fa-plus-octagon"></i></a>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+
+<!-- View detail record -->
+<div class="modal fade" id="viewStaff" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewRecordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewRecordLabel">Chi tiết</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-borderless h5">
+                    <tr>
+                        <td>Họ và tên:</td>
+                        <td><span id="s_name"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Phòng ban:</td>
+                        <td><span id="s_depart"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Giới tính:</td>
+                        <td><span id="s_gender"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td><span id="s_birthday"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><span id="s_email"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><span id="s_phone"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Lương:</td>
+                        <td><span id="s_salary"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Ghi chú:</td>
+                        <td><span id="s_notes"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End view detail record -->
+
 
 <!-- Footer -->
 <div th:replace="./include/footer.html"></div>
