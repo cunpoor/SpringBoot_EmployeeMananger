@@ -3,8 +3,6 @@ package com.cp.controller;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.websocket.server.PathParam;
-
 import com.cp.entity.Record;
 import com.cp.entity.Staff;
 import com.cp.repository.RecordRepository;
@@ -15,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -74,16 +72,10 @@ public class RecordController {
     }
 
     @GetMapping("/view")
-    public ModelAndView detail(@RequestParam Long id){
-        ModelAndView mav = new ModelAndView("record/index");
+    @ResponseBody
+    public Optional<Record> showDetail(@RequestParam Long id){
         Optional<Record> rd = this.recordRepository.findById(id);
-        if(rd.isPresent()){
-            mav.addObject("VIEW_RECORD", rd.get());
-        }else{
-            System.out.println("Khong ton tai: " + id);
-            mav.setViewName("redirect:/record");
-        }
-        return mav;
+        return recordRepository.findById(id);
     }
 
     @GetMapping("/update")

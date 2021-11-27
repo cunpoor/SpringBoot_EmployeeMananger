@@ -22,9 +22,9 @@
                 <td th:text="${r.type?'Thành tích':'Kỷ luật'}"></td>
                 <td th:text="${#dates.format(r.date,'dd/MM/yyyy')}"></td>
                 <td>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewRecord">
+                    <a th:href="@{/record/view?id={id}(id=${r.id})}" class="btn btn-primary detail_record" data-bs-toggle="modal" data-bs-target="#viewRecord">
                         Chi tiết
-                    </button>
+                    </a>
                     <a th:href="@{/record/update?id={id}(id=${r.id})}" class="btn btn-success">Cập nhật</a>
                     <a th:href="@{/record/delete?id={id}(id=${r.id})}" class="btn btn-danger">Xóa</a>
                 </td>
@@ -42,11 +42,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                <table class="table table-borderless  h5">
+                    <tr>
+                        <td>Họ và tên:</td>
+                        <td><span id="r_staffname"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Loại:</td>
+                        <td><span id="r_type"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày tiếp nhận:</td>
+                        <td><span id="r_date"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Lý do:</td>
+                        <td><span id="r_reason"></span></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

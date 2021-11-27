@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -37,14 +40,31 @@ public class Staff {
     private int salary;
     @Column(name = "notes", nullable = true)
     private String notes;
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "depart_id")
     private Depart departs;
     //
-    @OneToMany(mappedBy = "staffs",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "staffs", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("staffs")
     private Set<Record> record;
 
     public Staff() {
+    }
+
+    public Staff(Long id, String name, boolean gender, Date birthday, String email, String phone, int salary,
+            String notes, Depart departs, Set<Record> record) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.email = email;
+        this.phone = phone;
+        this.salary = salary;
+        this.notes = notes;
+        this.departs = departs;
+        this.record = record;
     }
 
     public Long getId() {
@@ -111,12 +131,20 @@ public class Staff {
         this.notes = notes;
     }
 
-    public Depart getDeparts() {
-        return departs;
-    }
-
     public void setDeparts(Depart departs) {
         this.departs = departs;
     }
 
+    public Depart getDeparts() {
+        return departs;
+    }
+
+    public Set<Record> getRecord() {
+        return record;
+    }
+
+    public void setRecord(Set<Record> record) {
+        this.record = record;
+    }
+    
 }

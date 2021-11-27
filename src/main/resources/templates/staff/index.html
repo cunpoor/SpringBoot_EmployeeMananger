@@ -24,6 +24,7 @@
                 <td th:text="${#dates.format(s.birthday,'dd/MM/yyyy')}"></td>
                 <td th:text="${s.phone}"></td>
                 <td>
+                    <a th:href="@{/staff/view?id={id}(id=${s.id})}" class="btn btn-primary">Chi tiết</a>
                     <a th:href="@{/staff/update?id={id}(id=${s.id})}" class="btn btn-success">Cập nhật</a>
                     <a th:href="@{/staff/delete?id={id}(id=${s.id})}" class="btn btn-danger">Xóa</a>
                     <a th:href="@{/record/add/s?id={id}(id=${s.id})}" class="btn btn-primary">+</a>

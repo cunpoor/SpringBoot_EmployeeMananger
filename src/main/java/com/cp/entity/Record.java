@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -28,10 +30,19 @@ public class Record {
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staff_id", nullable = false)
+    @JsonIgnoreProperties("record")
     private Staff staffs;
 
     public Record() {
+    }
+
+    public Record(Long id, Boolean type, String reason, Date date, Staff staffs) {
+        this.id = id;
+        this.type = type;
+        this.reason = reason;
+        this.date = date;
+        this.staffs = staffs;
     }
 
     public Long getId() {
