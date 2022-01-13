@@ -23,10 +23,10 @@
                 <td th:text="${#dates.format(r.date,'dd/MM/yyyy')}"></td>
                 <td>
                     <a th:href="@{/record/view?id={id}(id=${r.id})}" class="btn btn-primary detail_record" data-bs-toggle="modal" data-bs-target="#viewRecord">
-                        Chi tiết
+                        <i class="far fa-info-circle"></i>
                     </a>
-                    <a th:href="@{/record/update?id={id}(id=${r.id})}" class="btn btn-success">Cập nhật</a>
-                    <a th:href="@{/record/delete?id={id}(id=${r.id})}" class="btn btn-danger">Xóa</a>
+                    <a th:href="@{/record/update?id={id}(id=${r.id})}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    <a th:href="@{/record/delete?id={id}(id=${r.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         </tbody>
